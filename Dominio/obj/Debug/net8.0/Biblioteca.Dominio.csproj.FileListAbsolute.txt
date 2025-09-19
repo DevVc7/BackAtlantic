@@ -1,0 +1,11 @@
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\bin\Debug\net8.0\Biblioteca.Dominio.deps.json
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\bin\Debug\net8.0\Biblioteca.Dominio.dll
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\bin\Debug\net8.0\Biblioteca.Dominio.pdb
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\Biblioteca.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\Biblioteca.Dominio.AssemblyInfoInputs.cache
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\Biblioteca.Dominio.AssemblyInfo.cs
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\Biblioteca.Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\Biblioteca.Dominio.dll
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\refint\Biblioteca.Dominio.dll
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\Biblioteca.Dominio.pdb
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\ref\Biblioteca.Dominio.dll

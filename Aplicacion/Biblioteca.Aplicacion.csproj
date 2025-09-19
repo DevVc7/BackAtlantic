@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Referencias a proyectos de clase -->
+		<ProjectReference Include="..\Dominio\Biblioteca.Dominio.csproj" />
+		<ProjectReference Include="..\Infraestructura\Biblioteca.Infraestructura.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Servicios\" />
+	</ItemGroup>
+	
+</Project>
