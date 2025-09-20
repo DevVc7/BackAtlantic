@@ -15,3 +15,4 @@ C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Aplicacion\obj\Deb
 C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Aplicacion\obj\Debug\net8.0\refint\Biblioteca.Aplicacion.dll
 C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Aplicacion\obj\Debug\net8.0\Biblioteca.Aplicacion.pdb
 C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Aplicacion\obj\Debug\net8.0\ref\Biblioteca.Aplicacion.dll
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Aplicacion\obj\Debug\net8.0\Biblioteca.Aplicacion.sourcelink.json

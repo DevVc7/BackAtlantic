@@ -9,3 +9,4 @@ C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\
 C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\refint\Biblioteca.Dominio.dll
 C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\Biblioteca.Dominio.pdb
 C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\ref\Biblioteca.Dominio.dll
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\Dominio\obj\Debug\net8.0\Biblioteca.Dominio.sourcelink.json

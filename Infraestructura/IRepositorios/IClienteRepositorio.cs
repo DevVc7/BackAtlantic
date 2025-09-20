@@ -8,6 +8,7 @@ namespace Estacionamiento.Infraestructura.IRepositorios
     {
         Task<Cliente> ObtenerPorIdAsync(int id);
         Task<IEnumerable<Cliente>> ObtenerTodosAsync();
+        Task<Cliente> ObtenerPorEmailONumeroDocumentoAsync(string email, string numeroDocumento);
         Task AgregarAsync(Cliente cliente);
         Task ActualizarAsync(Cliente cliente);
         Task EliminarAsync(Cliente cliente);

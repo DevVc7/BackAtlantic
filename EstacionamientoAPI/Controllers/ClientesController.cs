@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Biblioteca.Dominio.Entidades;
+using Biblioteca.Aplicacion.Interfaces;
 using Biblioteca.Dominio.DTOs;
-using Estacionamiento.Infraestructura.Context;
+using Biblioteca.Dominio.Entidades;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BibliotecaSystem.Controllers
 {
@@ -10,114 +10,83 @@ namespace BibliotecaSystem.Controllers
     [Route("api/[controller]")]
     public class ClientesController : ControllerBase
     {
-        private readonly BibliotecaDbContext _context;
+        private readonly IClienteService _clienteService;
 
-        public ClientesController(BibliotecaDbContext context)
+        public ClientesController(IClienteService clienteService)
         {
-            _context = context;
+            _clienteService = clienteService;
         }
 
         [HttpPost("registrar")]
         public async Task<ActionResult<ClienteResponseDto>> RegistrarCliente([FromBody] RegistrarClienteDto request)
         {
-            // Validar que no exista cliente con mismo email o documento
-            var clienteExistente = await _context.Clientes
-                .FirstOrDefaultAsync(c => c.Email == request.Email || c.NumeroDocumento == request.NumeroDocumento);
-
-            if (clienteExistente != null)
+            try
             {
-                return BadRequest(new { mensaje = "Ya existe un cliente con ese email o número de documento" });
+                var response = await _clienteService.RegistrarClienteAsync(request);
+                return CreatedAtAction(nameof(GetCliente), new { id = response.Id }, response);
             }
-
-            var cliente = new Cliente
+            catch (Exception ex)
             {
-                Nombres = request.Nombres,
-                Apellidos = request.Apellidos,
-                TipoDocumento = request.TipoDocumento,
-                NumeroDocumento = request.NumeroDocumento,
-                Email = request.Email,
-                Telefono = request.Telefono,
-                Direccion = request.Direccion,
-                Ubigeo = request.Ubigeo,
-                Activo = true,
-                FechaCreacion = DateTime.Now
-            };
-
-            _context.Clientes.Add(cliente);
-            await _context.SaveChangesAsync();
-
-            var response = new ClienteResponseDto
-            {
-                Id = cliente.Id,
-                Nombres = cliente.Nombres,
-                Apellidos = cliente.Apellidos,
-                Email = cliente.Email,
-                Telefono = cliente.Telefono,
-                Estado = cliente.Activo.ToString()
-            };
-
-            return CreatedAtAction(nameof(GetCliente), new { id = cliente.Id }, response);
+                return BadRequest(new { mensaje = ex.Message });
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ClienteDetalleDto>> GetCliente(int id)
         {
-            var cliente = await _context.Clientes
-                .FirstOrDefaultAsync(c => c.Id == id);
-
+            var cliente = await _clienteService.ObtenerClientePorIdAsync(id);
             if (cliente == null)
             {
                 return NotFound(new { mensaje = "Cliente no encontrado" });
             }
+            return Ok(cliente);
+        }
 
-            var prestamosActivos = await _context.Prestamos
-                .Where(p => p.ClienteId == id && p.Estado == "Activo")
-                .CountAsync();
-
-            var response = new ClienteDetalleDto
+        [HttpGet("obtenerTodos")]
+        public async Task<ActionResult<Cliente>> GetClientes()
+        {
+            var cliente = await _clienteService.ObtenerTodosLosClientesAsync();
+            if (cliente == null)
             {
-                Id = cliente.Id,
-                Nombres = cliente.Nombres,
-                Apellidos = cliente.Apellidos,
-                TipoDocumento = cliente.TipoDocumento,
-                NumeroDocumento = cliente.NumeroDocumento,
-                Email = cliente.Email,
-                Telefono = cliente.Telefono,
-                Direccion = cliente.Direccion,
-                Estado = cliente.Activo.ToString(),
-                FechaCreacion = cliente.FechaCreacion,
-                EnListaNegra = cliente.EnListaNegra,
-                PrestamosActivos = prestamosActivos
-            };
-
-            return Ok(response);
+                return NotFound(new { mensaje = "Cliente no encontrado" });
+            }
+            return Ok(cliente);
         }
 
         [HttpPost("{id}/verificar-otp")]
         public async Task<ActionResult> VerificarOTP(int id, [FromBody] VerificarOTPDto request)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
-
-            if (cliente == null)
+            try
             {
+                var result = await _clienteService.VerificarOtpAsync(id, request);
+                if (result)
+                {
+                    return Ok(new { mensaje = "Cliente verificado exitosamente" });
+                }
                 return NotFound(new { mensaje = "Cliente no encontrado" });
             }
-
-            if (cliente.Activo.ToString() != "Pendiente")
+            catch (Exception ex)
             {
-                return BadRequest(new { mensaje = "Cliente ya está verificado" });
+                return BadRequest(new { mensaje = ex.Message });
             }
+        }
 
-            if (request.CodigoOTP.Length != 6 || !request.CodigoOTP.All(char.IsDigit))
+        [HttpPost("{id}/actualizarCliente")]
+        public async Task<ActionResult> ActualizarCliente(int id, [FromBody] ActualizarClienteDto request)
+        {
+            try
             {
-                return BadRequest(new { mensaje = "Código OTP inválido" });
+                var result = await _clienteService.ActualizarClienteAsync(id, request);
+                if (result)
+                {
+                    return Ok(new { mensaje = "Cliente actualizado exitosamente" });
+                }
+                return NotFound(new { mensaje = "Cliente no encontrado" });
             }
-
-            cliente.Activo = true;
-
-            await _context.SaveChangesAsync();
-
-            return Ok(new { mensaje = "Cliente verificado exitosamente" });
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensaje = ex.Message });
+            }
         }
     }
 }

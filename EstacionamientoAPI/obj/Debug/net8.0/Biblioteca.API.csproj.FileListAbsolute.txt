@@ -143,3 +143,4 @@ C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\EstacionamientoAPI
 C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\EstacionamientoAPI\obj\Debug\net8.0\Biblioteca.API.genruntimeconfig.cache
 C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\EstacionamientoAPI\obj\Debug\net8.0\ref\Biblioteca.API.dll
 C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\EstacionamientoAPI\obj\Debug\net8.0\Biblioteca.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Victor\Desktop\Desarrollos Victor\EstacionamientoAPI\EstacionamientoAPI\obj\Debug\net8.0\Biblioteca.API.sourcelink.json

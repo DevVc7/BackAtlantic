@@ -38,6 +38,18 @@ namespace Biblioteca.Dominio.DTOs
         public DateTime? FechaNacimiento { get; set; }
     }
 
+    public class ActualizarClienteDto
+    {
+        public string? Nombres { get; set; } = null;
+        public string? Apellidos { get; set; } = null;
+        public string? TipoDocumento { get; set; } = null;
+        public string? NumeroDocumento { get; set; } = null;
+        public string? Email { get; set; } = null;
+        public string? Telefono { get; set; } = null;
+        public string? Direccion { get; set; } = null;
+        public string? Ubigeo { get; set; } = null;
+        public DateTime? FechaNacimiento { get; set; } = null;
+    }
     public class ClienteResponseDto
     {
         public int Id { get; set; }

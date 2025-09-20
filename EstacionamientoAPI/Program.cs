@@ -19,10 +19,12 @@ builder.Services.AddDbContext<BibliotecaDbContext>(options =>
 // Inyección de dependencias de repositorios
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<IRolRepositorio, RolRepositorio>();
+builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 
 // Inyección de dependencias de servicios
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IRolService, RolService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
 
 builder.Services.AddControllers();
 

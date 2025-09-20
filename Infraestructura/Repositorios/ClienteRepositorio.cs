@@ -23,7 +23,12 @@ namespace Estacionamiento.Infraestructura.Repositorios
 
         public async Task<IEnumerable<Cliente>> ObtenerTodosAsync()
         {
-            return await _context.Clientes.ToListAsync();
+            return await _context.Clientes.Where(c => c.Activo).ToListAsync();
+        }
+
+        public async Task<Cliente> ObtenerPorEmailONumeroDocumentoAsync(string email, string numeroDocumento)
+        {
+            return await _context.Clientes.FirstOrDefaultAsync(c => c.Email == email || c.NumeroDocumento == numeroDocumento);
         }
 
         public async Task AgregarAsync(Cliente cliente)
@@ -34,7 +39,6 @@ namespace Estacionamiento.Infraestructura.Repositorios
 
         public async Task ActualizarAsync(Cliente cliente)
         {
-            _context.Clientes.Update(cliente);
             await _context.SaveChangesAsync();
         }
 
