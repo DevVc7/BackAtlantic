@@ -43,12 +43,12 @@ namespace BibliotecaSystem.Controllers
         }
 
         [HttpGet("obtenerTodos")]
-        public async Task<ActionResult<Cliente>> GetClientes()
+        public async Task<ActionResult<ClienteDetalleDto>> GetClientes()
         {
             var cliente = await _clienteService.ObtenerTodosLosClientesAsync();
             if (cliente == null)
             {
-                return NotFound(new { mensaje = "Cliente no encontrado" });
+                return NotFound(new { mensaje = "Clientes no encontrados" });
             }
             return Ok(cliente);
         }
@@ -80,6 +80,24 @@ namespace BibliotecaSystem.Controllers
                 if (result)
                 {
                     return Ok(new { mensaje = "Cliente actualizado exitosamente" });
+                }
+                return NotFound(new { mensaje = "Cliente no encontrado" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensaje = ex.Message });
+            }
+        }
+
+        [HttpPost("{id}/eliminarCliente")]
+        public async Task<ActionResult> EliminarCliente(int id)
+        {
+            try
+            {
+                var result = await _clienteService.EliminarClienteAsync(id);
+                if (result)
+                {
+                    return Ok(new { mensaje = "Cliente eliminado exitosamente" });
                 }
                 return NotFound(new { mensaje = "Cliente no encontrado" });
             }

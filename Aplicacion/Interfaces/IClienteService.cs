@@ -8,7 +8,7 @@ namespace Biblioteca.Aplicacion.Interfaces
     public interface IClienteService
     {
         Task<ClienteDetalleDto> ObtenerClientePorIdAsync(int id);
-        Task<IEnumerable<Cliente>> ObtenerTodosLosClientesAsync();
+        Task<IEnumerable<ClienteDetalleDto>> ObtenerTodosLosClientesAsync();
         Task<ClienteResponseDto> RegistrarClienteAsync(RegistrarClienteDto registrarClienteDto);
         Task<bool> ActualizarClienteAsync(int id, ActualizarClienteDto registrarClienteDto);
         Task<bool> EliminarClienteAsync(int id);

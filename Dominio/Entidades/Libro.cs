@@ -29,9 +29,6 @@ namespace Biblioteca.Dominio.Entidades
         [Column("categoria_id")]
         public int CategoriaId { get; set; }
 
-        [Column("editorial_id")]
-        public int? EditorialId { get; set; }
-
         [Column("fecha_publicacion")]
         public DateTime? FechaPublicacion { get; set; }
 

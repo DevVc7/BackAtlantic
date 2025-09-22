@@ -122,16 +122,39 @@ namespace Biblioteca.Aplicacion.Servicios
             return true;
         }
 
-        public async Task<IEnumerable<Cliente>> ObtenerTodosLosClientesAsync()
+        public async Task<IEnumerable<ClienteDetalleDto>> ObtenerTodosLosClientesAsync()
         {
             var lista = await _clienteRepositorio.ObtenerTodosAsync();
 
             if (lista == null)
             {
-                return null;
+                return Enumerable.Empty<ClienteDetalleDto>();
             }
 
-            return lista;
+            var resultado = new List<ClienteDetalleDto>();
+
+            foreach (var cliente in lista)
+            {
+                int prestamosActivos = 0;
+
+                resultado.Add(new ClienteDetalleDto
+                {
+                    Id = cliente.Id,
+                    Nombres = cliente.Nombres,
+                    Apellidos = cliente.Apellidos,
+                    TipoDocumento = cliente.TipoDocumento,
+                    NumeroDocumento = cliente.NumeroDocumento,
+                    Email = cliente.Email,
+                    Telefono = cliente.Telefono,
+                    Direccion = cliente.Direccion,
+                    Estado = cliente.Activo ? "Activo" : "Inactivo",
+                    FechaCreacion = cliente.FechaCreacion,
+                    EnListaNegra = cliente.EnListaNegra,
+                    PrestamosActivos = prestamosActivos
+                });
+            }
+
+            return resultado;
         }
 
         public async Task<bool> ActualizarClienteAsync(int id, ActualizarClienteDto rq)
@@ -157,6 +180,11 @@ namespace Biblioteca.Aplicacion.Servicios
                 throw new Exception("El cliente aún no está verificado.");
             }
 
+            if(!cliente.Activo)
+            {
+                throw new Exception("El cliente no se encuentra habilitado");
+            }
+
             cliente.Nombres = rq.Nombres ?? cliente.Nombres;
             cliente.Apellidos = rq.Apellidos ?? cliente.Apellidos;
             cliente.TipoDocumento = rq.TipoDocumento ?? cliente.TipoDocumento;
@@ -171,9 +199,19 @@ namespace Biblioteca.Aplicacion.Servicios
             return true;
         }
 
-        public Task<bool> EliminarClienteAsync(int id)
+        public async Task<bool> EliminarClienteAsync(int id)
         {
-            throw new NotImplementedException();
+            var cliente = await _clienteRepositorio.ObtenerPorIdAsync(id);
+            if (cliente == null)
+            {
+                return false;
+            }
+
+            cliente.Activo = false;
+
+            await _clienteRepositorio.ActualizarAsync(cliente);
+
+            return true;
         }
     }
 }

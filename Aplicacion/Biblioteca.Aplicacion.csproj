@@ -11,9 +11,5 @@
 		<ProjectReference Include="..\Dominio\Biblioteca.Dominio.csproj" />
 		<ProjectReference Include="..\Infraestructura\Biblioteca.Infraestructura.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Servicios\" />
-	</ItemGroup>
 	
 </Project>
