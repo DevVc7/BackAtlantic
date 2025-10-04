@@ -8,5 +8,7 @@ namespace Biblioteca.Aplicacion.Interfaces
     {
         Task<RolDto> ObtenerRolPorIdAsync(int id);
         Task<IEnumerable<RolDto>> ObtenerTodosLosRolesAsync();
+        Task<RolResponseDto> RegistrarRolAsync(RegistrarRolDto registrarRolDto);
+        Task<bool> EliminarRolAsync(int id);
     }
 }

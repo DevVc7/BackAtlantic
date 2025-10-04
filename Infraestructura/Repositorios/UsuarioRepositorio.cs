@@ -23,7 +23,7 @@ namespace Estacionamiento.Infraestructura.Repositorios
 
         public async Task<IEnumerable<Usuario>> ObtenerTodosAsync()
         {
-            return await _context.Usuarios.Include(u => u.Rol).ToListAsync();
+            return await _context.Usuarios.Include(u => u.Rol).Where(u => u.Activo).ToListAsync();
         }
 
         public async Task AgregarAsync(Usuario usuario)
@@ -40,7 +40,7 @@ namespace Estacionamiento.Infraestructura.Repositorios
 
         public async Task EliminarAsync(Usuario usuario)
         {
-            _context.Usuarios.Remove(usuario);
+            usuario.Activo = false;
             await _context.SaveChangesAsync();
         }
 

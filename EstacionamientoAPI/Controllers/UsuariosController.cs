@@ -60,7 +60,7 @@ namespace Estacionamiento.API.Controllers
                 return NotFound();
             }
 
-            return NoContent();
+            return Ok(new { mensaje = "Usuario actualizado exitosamente" });
         }
 
         [HttpDelete("{id}")]
@@ -72,7 +72,7 @@ namespace Estacionamiento.API.Controllers
                 return NotFound();
             }
 
-            return NoContent();
+            return Ok(new { mensaje = "Usuario eliminado exitosamente" });
         }
     }
 }

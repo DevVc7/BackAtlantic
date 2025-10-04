@@ -40,5 +40,11 @@ namespace Estacionamiento.Infraestructura.Repositorios
         {
             await _context.SaveChangesAsync();
         }
+
+        public async Task EliminarAsync(Libro libro)
+        {
+            libro.Activo = false;
+            await _context.SaveChangesAsync();
+        }
     }
 }

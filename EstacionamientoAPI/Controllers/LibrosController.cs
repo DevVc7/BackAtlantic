@@ -77,8 +77,8 @@ namespace BibliotecaSystem.Controllers
             }
         }
 
-        [HttpPost("{id}/eliminarLibro")]
-        public async Task<ActionResult> EliminarLibro(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> EliminarLibro(int id)
         {
             try
             {

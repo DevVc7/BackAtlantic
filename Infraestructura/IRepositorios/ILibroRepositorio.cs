@@ -12,5 +12,6 @@ namespace Estacionamiento.Infraestructura.IRepositorios
         Task<IEnumerable<Categoria>> ObtenerCategoriasAsync();
         Task AgregarAsync(Libro libro);
         Task ActualizarAsync(Libro libro);
+        Task EliminarAsync(Libro libro);
     }
 }

@@ -44,7 +44,7 @@ namespace Estacionamiento.Infraestructura.Repositorios
 
         public async Task EliminarAsync(Cliente cliente)
         {
-            _context.Clientes.Remove(cliente);
+            cliente.Activo = false;
             await _context.SaveChangesAsync();
         }
     }

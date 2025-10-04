@@ -23,7 +23,7 @@ namespace Estacionamiento.Infraestructura.Repositorios
 
         public async Task<IEnumerable<Rol>> ObtenerTodosAsync()
         {
-            return await _context.Roles.ToListAsync();
+            return await _context.Roles.Where(r => r.Activo).ToListAsync();
         }
 
         public async Task AgregarAsync(Rol rol)
@@ -40,7 +40,7 @@ namespace Estacionamiento.Infraestructura.Repositorios
 
         public async Task EliminarAsync(Rol rol)
         {
-            _context.Roles.Remove(rol);
+            rol.Activo = false;
             await _context.SaveChangesAsync();
         }
     }
